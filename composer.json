@@ -1,0 +1,31 @@
+{
+    "name": "jasonmann\/flysystem-aliyun-oss",
+    "description": "Flysystem adapter for the Aliyun OSS SDK",
+    "keywords": [
+        "Laravel",
+        "oss",
+        "ali oss",
+        "阿里 oss"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason mann",
+            "email": "793650314@qq.com"
+        }
+    ],
+    "require": {
+        "ext-openssl": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "php": "^7.0 || ^8.0",
+        "league/flysystem": "^1.1",
+        "aliyuncs/oss-sdk-php": "^2.4",
+        "nesbot/carbon": "^2.55"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jasonmann\\Flysystem\\Aliyun\\": "src"
+        }
+    }
+}
