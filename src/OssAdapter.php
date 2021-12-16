@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the JasonMann1993/flysystem-aliyun-oss.
+ *
+ * (c) jasonmann <793650314@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Jasonmann\Flysystem\Aliyun;
 
@@ -54,7 +62,6 @@ class OssAdapter extends AbstractAdapter
      */
     protected $isCName;
 
-
     /**
      * @var OssClient
      */
@@ -84,7 +91,7 @@ class OssAdapter extends AbstractAdapter
      *
      * @throws OssException
      */
-    public function __construct($accessKeyId, $accessKeySecret, $endpoint, $bucket, $isCName = false, $prefix = '', $securityToken = NULL, $requestProxy = NULL)
+    public function __construct($accessKeyId, $accessKeySecret, $endpoint, $bucket, $isCName = false, $prefix = '', $securityToken = null, $requestProxy = null)
     {
         $this->accessKeyId = $accessKeyId;
         $this->accessKeySecret = $accessKeySecret;
@@ -99,7 +106,7 @@ class OssAdapter extends AbstractAdapter
     }
 
     /**
-     * Get ali oss client
+     * Get ali oss client.
      *
      * @return OssClient
      *
@@ -130,7 +137,7 @@ class OssAdapter extends AbstractAdapter
         if ($this->isCName) {
             $domain = $this->endpoint;
         } else {
-            $domain = $this->bucket . '.' . $this->endpoint;
+            $domain = $this->bucket.'.'.$this->endpoint;
         }
 
         if ($this->client->isUseSSL()) {
@@ -139,7 +146,7 @@ class OssAdapter extends AbstractAdapter
             $domain = "http://{$domain}";
         }
 
-        return rtrim($domain, '/') . '/';
+        return rtrim($domain, '/').'/';
     }
 
     /**
@@ -153,7 +160,7 @@ class OssAdapter extends AbstractAdapter
     {
         $path = $this->applyPathPrefix($path);
 
-        return $this->normalizeHost() . ltrim($path, '/');
+        return $this->normalizeHost().ltrim($path, '/');
     }
 
     /**
@@ -284,7 +291,6 @@ class OssAdapter extends AbstractAdapter
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config
      *
      * @return array|bool|false
      */
@@ -304,7 +310,6 @@ class OssAdapter extends AbstractAdapter
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config
      *
      * @return array|bool|false
      */
@@ -320,7 +325,6 @@ class OssAdapter extends AbstractAdapter
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config
      *
      * @return array|bool|false
      */
@@ -334,7 +338,6 @@ class OssAdapter extends AbstractAdapter
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config
      *
      * @return array|bool|false
      */
@@ -391,7 +394,7 @@ class OssAdapter extends AbstractAdapter
     }
 
     /**
-     * Delete a directory
+     * Delete a directory.
      *
      * @param string $dirname
      *
@@ -408,10 +411,9 @@ class OssAdapter extends AbstractAdapter
     }
 
     /**
-     * Create a directory
+     * Create a directory.
      *
      * @param string $dirname
-     * @param Config $config
      *
      * @return array|false|void
      */
@@ -458,7 +460,7 @@ class OssAdapter extends AbstractAdapter
     }
 
     /**
-     * Read a file
+     * Read a file.
      *
      * @param string $path
      *
@@ -507,7 +509,6 @@ class OssAdapter extends AbstractAdapter
         return $this->client->getObject($this->bucket, $path);
     }
 
-
     /**
      *Lists all files in the directory.
      *
@@ -521,11 +522,11 @@ class OssAdapter extends AbstractAdapter
     public function listContents($directory = '', $recursive = false)
     {
         $list = [];
-        $directory = '/' == substr($directory, -1) ? $directory : $directory . '/';
+        $directory = '/' == substr($directory, -1) ? $directory : $directory.'/';
         $result = $this->listDirObjects($directory, $recursive);
-        if ( !empty($result['objects'])) {
+        if (!empty($result['objects'])) {
             foreach ($result['objects'] as $files) {
-                if ( !$fileInfo = $this->normalizeFileInfo($files)) {
+                if (!$fileInfo = $this->normalizeFileInfo($files)) {
                     continue;
                 }
                 $list[] = $fileInfo;
@@ -533,7 +534,7 @@ class OssAdapter extends AbstractAdapter
         }
 
         // prefix
-        if ( !empty($result['prefix'])) {
+        if (!empty($result['prefix'])) {
             foreach ($result['prefix'] as $dir) {
                 $list[] = [
                     'type' => 'dir',
@@ -657,7 +658,7 @@ class OssAdapter extends AbstractAdapter
             $objectList = $listObjectInfo->getObjectList();
             $prefixList = $listObjectInfo->getPrefixList();
 
-            if ( !empty($objectList)) {
+            if (!empty($objectList)) {
                 foreach ($objectList as $objectInfo) {
                     $object['Prefix'] = $dirname;
                     $object['Key'] = $objectInfo->getKey();
@@ -672,7 +673,7 @@ class OssAdapter extends AbstractAdapter
                 $result['objects'] = [];
             }
 
-            if ( !empty($prefixList)) {
+            if (!empty($prefixList)) {
                 foreach ($prefixList as $prefixInfo) {
                     $result['prefix'][] = $prefixInfo->getPrefix();
                 }
