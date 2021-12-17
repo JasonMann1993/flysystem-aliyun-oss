@@ -259,13 +259,13 @@ export default {
 
 ```
                                                          
-## Laravel 适配包
+## Laravel、Lumen适配包
 
 -   Laravel 5：[jasonmann/laravel-filesystem-ali](https://github.com/JasonMann1993/laravel-filesystem-ali)
 
 ## 参考
 
--  [iidestiny/filesystem-oss](https://github.com/iiDestiny/filesystem-oss)
+-  [iidestiny/flysystem-oss](https://github.com/iiDestiny/flysystem-oss)
                                                          
 ## License
 
