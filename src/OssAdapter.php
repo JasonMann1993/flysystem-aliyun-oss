@@ -493,7 +493,7 @@ class OssAdapter extends AbstractAdapter
         } catch (OssException $exception) {
             return false;
         }
-        
+
         return compact('stream', 'path');
     }
 
