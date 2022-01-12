@@ -2,7 +2,7 @@
 
 <p align="center"> Flysystem adapter for the Aliyun OSS SDK.</p>
 <p align="center>
- <a href="https://github.com/JasonMann1993/flysystem-aliyun-oss"><img src="https://github.styleci.io/repos/438890573/shield?branch=master" alt="StyleCI"></a>
+ <a href="https://github.styleci.io/repos/438890573?branch=master"><img src="https://github.styleci.io/repos/438890573/shield?branch=master" alt="StyleCI"></a>
  <a href="https://github.com/JasonMann1993/flysystem-aliyun-oss"><img src="http://poser.pugx.org/jasonmann/flysystem-aliyun-oss/license"></a>
 </p>
 
