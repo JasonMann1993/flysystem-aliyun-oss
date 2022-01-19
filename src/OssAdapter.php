@@ -300,9 +300,9 @@ class OssAdapter extends AbstractAdapter
 
         $options = $config->get('options', []);
 
-        $this->client->putObject($this->bucket, $path, $contents, $options);
+        $result = $this->client->putObject($this->bucket, $path, $contents, $options);
 
-        return true;
+        return $result;
     }
 
     /**
@@ -377,7 +377,8 @@ class OssAdapter extends AbstractAdapter
     {
         $path = $this->applyPathPrefix($path);
         $newpath = $this->applyPathPrefix($newpath);
-        $this->client->copyObject($this->bucket, $path, $this->bucket, $newpath);
+        $result = $this->client->copyObject($this->bucket, $path, $this->bucket, $newpath);
+        return $result;
     }
 
     /**
@@ -390,7 +391,8 @@ class OssAdapter extends AbstractAdapter
     public function delete($path)
     {
         $path = $this->applyPathPrefix($path);
-        $this->client->deleteObject($this->bucket, $path);
+        $result = $this->client->deleteObject($this->bucket, $path);
+        return $result;
     }
 
     /**
@@ -420,7 +422,8 @@ class OssAdapter extends AbstractAdapter
     public function createDir($dirname, Config $config)
     {
         $path = $this->applyPathPrefix($dirname);
-        $this->client->createObjectDir($this->bucket, $path);
+        $result = $this->client->createObjectDir($this->bucket, $path);
+        return $result;
     }
 
     /**
@@ -493,8 +496,6 @@ class OssAdapter extends AbstractAdapter
         } catch (OssException $exception) {
             return false;
         }
-
-        return compact('stream', 'path');
     }
 
     /**
