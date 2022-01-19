@@ -375,6 +375,7 @@ class OssAdapter extends AbstractAdapter
     {
         $path = $this->applyPathPrefix($path);
         $newpath = $this->applyPathPrefix($newpath);
+
         return $this->client->copyObject($this->bucket, $path, $this->bucket, $newpath);
     }
 
@@ -388,6 +389,7 @@ class OssAdapter extends AbstractAdapter
     public function delete($path)
     {
         $path = $this->applyPathPrefix($path);
+
         return $this->client->deleteObject($this->bucket, $path);
     }
 
@@ -418,6 +420,7 @@ class OssAdapter extends AbstractAdapter
     public function createDir($dirname, Config $config)
     {
         $path = $this->applyPathPrefix($dirname);
+
         return $this->client->createObjectDir($this->bucket, $path);
     }
 
